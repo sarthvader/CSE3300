@@ -15,9 +15,9 @@ print requestString
 clientSocket.send(requestString)
 
 modifiedString = clientSocket.recv(1024)
-print 'From Server: ', modifiedString
-ackString = 'ex 0 %s %s \n' %(usernum+2, servernum+1)
-clientSocket.send(ackString)
+if not(modifiedString.find('OK')):
+       print 'No OK'
+print 'From Server: %s' %(modifiedString)   
 
 clientSocket.close()
 
