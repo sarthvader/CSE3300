@@ -16,7 +16,6 @@ usernum = random.randint(1000, 8000)
 
 #constructing request string to send to server
 requestString = 'ex0 137.99.3.212-%s %s %s S.Bhatnagar\n' %(serverPort, ipLocal, usernum)
-print requestString
 clientSocket.send(requestString)
 
 #getting the reply from the server
@@ -31,14 +30,14 @@ servernum = int(modifiedString[servernumIndex + 4 : ])
 if (modifiedString.find('OK') != -1):
    # newusernum = usernum+2
    # newservernum = servernum+1
-    print 'found OK'
+   # print 'found OK'
     ackString = 'ex0 %s %s\n' %((usernum+2), (servernum+1))
-    print ackString
+   # print ackString
     clientSocket.send(ackString)
     serverAckString = clientSocket.recv(1024)
-    print serverAckString
+    print 'From Server: ', serverAckString
 else:
-    print 'Error No OK'
+    print 'Error No OK found'
     print 'From server: %s' %(moddifiedString)
     
 clientSocket.close()
